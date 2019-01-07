@@ -30,3 +30,9 @@
     transform: rotate(360deg);
   }
 }
+
+h1{
+  color: brown; 
+  font-size: 2rem;
+  text-align: center;
+}

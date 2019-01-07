@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   render() {
-    // console.log("render");
+    console.log("render");
     //const { users } = this.state.users;
   //   return (
   //     <div>

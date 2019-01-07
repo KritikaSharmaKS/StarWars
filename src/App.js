@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
+import NameCell from './NameCell';
+import ReactTable from "react-table";
+import 'react-table/react-table.css';
 
 class App extends Component {
   constructor(){
@@ -22,28 +24,37 @@ class App extends Component {
       console.log(initialUsers);
     });
   }
-
   render() {
     console.log("render");
-    //const { users } = this.state.users;
-  //   return (
-  //     <div>
-  //     <h1>{'This will always render'}</h1>
-  //     { this.state && this.state.users &&
-  //         <div>{'This will just render after the return of the async call'}
-  //         {this.state.users.map(i => <li>{i.name}</li>)}
-  //         </div>
-  //     }
-  //     </div>
-  // )
+    const columns = [{
+      Header: 'Name',
+      accessor: 'name',
+      Cell: (props) => <NameCell name={props.value} url={props.original.url} />
+    },{
+      Header: 'Gender',
+      accessor: 'gender'
+    }
+    ,{
+      Header: 'Height',
+      accessor: 'height'
+    }
+    ,{
+      Header: 'Mass',
+      accessor: 'mass'
+    }
+  ]
     return this.state.users ? (
       <div>
         <h1>Star Wars</h1>
-        { this.state && this.state.users &&
-          <div>
-            {this.state.users.map(i => <li>{i.name}</li>)}
-          </div>
-      }
+        <div>
+          <ReactTable 
+            data = {this.state.users}
+            columns = {columns}
+            filterable
+            defaultPageSize={5}
+            className="-striped -highlight"
+          />
+        </div>
       </div>
     ) : <h1>Loading</h1>
   }

@@ -45,7 +45,12 @@ class App extends Component {
     }
     ,{
       Header: 'Mass',
-      accessor: 'mass'
+      accessor: 'mass',
+      Footer: (
+        <span>{
+          this.state.users.reduce((total, { mass }) => total += Number(mass), 0)/this.state.users.length
+        }</span>
+      )
     }
   ]
     return this.state.users ? (
